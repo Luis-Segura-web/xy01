@@ -103,10 +103,10 @@ class ProfileActivity : AppCompatActivity() {
     }
     
     private fun clearForm() {
-        binding.editProfileName.text.clear()
-        binding.editServerUrl.text.clear()
-        binding.editUsername.text.clear()
-        binding.editPassword.text.clear()
+        binding.editProfileName.text?.clear()
+        binding.editServerUrl.text?.clear()
+        binding.editUsername.text?.clear()
+        binding.editPassword.text?.clear()
     }
     
     override fun onSupportNavigateUp(): Boolean {

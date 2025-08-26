@@ -12,11 +12,8 @@ import com.xy01.iptvplayer.data.model.Movie
 import com.xy01.iptvplayer.data.model.Profile
 import com.xy01.iptvplayer.data.model.Series
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ContentRepository @Inject constructor(
+class ContentRepository(
     private val apiService: XtreamApiService,
     private val contentDao: ContentDao
 ) {

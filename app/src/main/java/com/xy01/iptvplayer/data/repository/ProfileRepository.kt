@@ -4,11 +4,8 @@ import com.xy01.iptvplayer.data.database.ProfileDao
 import com.xy01.iptvplayer.data.model.Profile
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class ProfileRepository @Inject constructor(
+class ProfileRepository(
     private val profileDao: ProfileDao
 ) {
     

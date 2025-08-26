@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         setupBottomNavigation()
         observeViewModel()
         checkActiveProfile()
+        
+        // Set default fragment
+        if (savedInstanceState == null) {
+            binding.bottomNavigation.selectedItemId = R.id.navigation_live
+        }
+    }
     }
     
     private fun setupUI() {
@@ -57,11 +63,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 else -> false
             }
-        }
-        
-        // Set default fragment
-        if (savedInstanceState == null) {
-            binding.bottomNavigation.selectedItemId = R.id.navigation_live
         }
     }
     
