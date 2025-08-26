@@ -60,19 +60,21 @@ class LiveFragment : Fragment() {
     }
     
     private fun startPlayer(streamId: String, title: String) {
-        val intent = Intent(requireContext(), com.xy01.iptvplayer.ui.player.PlayerActivity::class.java).apply {
-            putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_STREAM_URL, buildStreamUrl(streamId))
-            putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_TITLE, title)
+        viewModel.activeProfile.value?.let { profile ->
+            val streamUrl = com.xy01.iptvplayer.utils.StreamUrlBuilder.buildLiveStreamUrl(profile, streamId)
+            val intent = Intent(requireContext(), com.xy01.iptvplayer.ui.player.PlayerActivity::class.java).apply {
+                putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_STREAM_URL, streamUrl)
+                putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_TITLE, title)
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
     
     private fun buildStreamUrl(streamId: String): String {
-        // Extract actual stream ID and build the streaming URL
-        // This is a placeholder - in real implementation, we'd use the profile's server URL
-        // and build the proper Xtream Codes streaming URL
-        val actualStreamId = streamId.substringAfterLast("_")
-        return "http://example.com/live/username/password/$actualStreamId.ts"
+        // This method is kept for backward compatibility but now uses StreamUrlBuilder
+        return viewModel.activeProfile.value?.let { profile ->
+            com.xy01.iptvplayer.utils.StreamUrlBuilder.buildLiveStreamUrl(profile, streamId)
+        } ?: "http://example.com/live/username/password/$streamId.ts"
     }
     
     override fun onDestroyView() {

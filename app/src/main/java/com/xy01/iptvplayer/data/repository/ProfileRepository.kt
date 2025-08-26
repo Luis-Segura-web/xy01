@@ -30,10 +30,11 @@ class ProfileRepository @Inject constructor(
     
     suspend fun createProfile(name: String, serverUrl: String, username: String, password: String): String {
         val profileId = UUID.randomUUID().toString()
+        val formattedUrl = com.xy01.iptvplayer.utils.StreamUrlBuilder.buildServerUrl(serverUrl)
         val profile = Profile(
             id = profileId,
             name = name,
-            serverUrl = serverUrl,
+            serverUrl = formattedUrl,
             username = username,
             password = password
         )

@@ -60,17 +60,20 @@ class MoviesFragment : Fragment() {
     }
     
     private fun startPlayer(streamId: String, title: String) {
-        val intent = Intent(requireContext(), com.xy01.iptvplayer.ui.player.PlayerActivity::class.java).apply {
-            putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_STREAM_URL, buildStreamUrl(streamId))
-            putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_TITLE, title)
+        viewModel.activeProfile.value?.let { profile ->
+            val streamUrl = com.xy01.iptvplayer.utils.StreamUrlBuilder.buildMovieStreamUrl(profile, streamId)
+            val intent = Intent(requireContext(), com.xy01.iptvplayer.ui.player.PlayerActivity::class.java).apply {
+                putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_STREAM_URL, streamUrl)
+                putExtra(com.xy01.iptvplayer.ui.player.PlayerActivity.EXTRA_TITLE, title)
+            }
+            startActivity(intent)
         }
-        startActivity(intent)
     }
     
     private fun buildStreamUrl(streamId: String): String {
-        // Extract actual stream ID and build the streaming URL for movies
-        val actualStreamId = streamId.substringAfterLast("_")
-        return "http://example.com/movie/username/password/$actualStreamId.mp4"
+        return viewModel.activeProfile.value?.let { profile ->
+            com.xy01.iptvplayer.utils.StreamUrlBuilder.buildMovieStreamUrl(profile, streamId)
+        } ?: "http://example.com/movie/username/password/$streamId.mp4"
     }
     
     override fun onDestroyView() {
