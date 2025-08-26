@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.xy01.iptvplayer.R
 import com.xy01.iptvplayer.databinding.ActivityMainBinding
 import com.xy01.iptvplayer.ui.profile.ProfileActivity
 import kotlinx.coroutines.launch
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         setupUI()
+        setupBottomNavigation()
         observeViewModel()
         checkActiveProfile()
     }
@@ -35,6 +38,37 @@ class MainActivity : AppCompatActivity() {
         binding.btnSync.setOnClickListener {
             viewModel.syncActiveProfileContent()
         }
+    }
+    
+    private fun setupBottomNavigation() {
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_live -> {
+                    loadFragment(LiveFragment())
+                    true
+                }
+                R.id.navigation_movies -> {
+                    loadFragment(MoviesFragment())
+                    true
+                }
+                R.id.navigation_series -> {
+                    loadFragment(SeriesFragment())
+                    true
+                }
+                else -> false
+            }
+        }
+        
+        // Set default fragment
+        if (savedInstanceState == null) {
+            binding.bottomNavigation.selectedItemId = R.id.navigation_live
+        }
+    }
+    
+    private fun loadFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
     
     private fun observeViewModel() {
