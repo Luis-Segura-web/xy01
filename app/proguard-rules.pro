@@ -1,0 +1,2 @@
+-keep class com.xy01.iptvplayer.** { *; }
+-keepclassmembers class com.xy01.iptvplayer.data.model.** { *; }
