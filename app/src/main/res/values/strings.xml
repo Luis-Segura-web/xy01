@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">XY01 IPTV Player</string>
+    
+    <!-- Profile Management -->
+    <string name="profile_name">Profile Name</string>
+    <string name="server_url">Server URL</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="add_profile">Add Profile</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="delete_profile">Delete Profile</string>
+    <string name="save_profile">Save Profile</string>
+    <string name="cancel">Cancel</string>
+    <string name="select_profile">Select Profile</string>
+    <string name="no_profiles">No profiles found. Create a new one.</string>
+    
+    <!-- Main Screen -->
+    <string name="live_tv">Live TV</string>
+    <string name="movies">Movies</string>
+    <string name="series">Series</string>
+    <string name="categories">Categories</string>
+    <string name="channels">Channels</string>
+    <string name="all_channels">All Channels</string>
+    <string name="all_movies">All Movies</string>
+    <string name="all_series">All Series</string>
+    
+    <!-- Player -->
+    <string name="loading">Loading...</string>
+    <string name="error_playing">Error playing content</string>
+    <string name="no_content">No content available</string>
+    
+    <!-- Errors -->
+    <string name="error_authentication">Authentication failed</string>
+    <string name="error_network">Network error</string>
+    <string name="error_loading_content">Error loading content</string>
+    <string name="fill_all_fields">Please fill all fields</string>
+    <string name="invalid_url">Invalid server URL</string>
+    
+    <!-- Actions -->
+    <string name="retry">Retry</string>
+    <string name="refresh">Refresh</string>
+    <string name="sync_content">Sync Content</string>
+    
+    <!-- Status -->
+    <string name="syncing">Syncing content...</string>
+    <string name="sync_complete">Content synchronized</string>
+    <string name="cached_content">Using cached content</string>
+</resources>
