@@ -34,7 +34,6 @@ class MainActivity : AppCompatActivity() {
             binding.bottomNavigation.selectedItemId = R.id.navigation_live
         }
     }
-    }
     
     private fun setupUI() {
         binding.fabAddProfile.setOnClickListener {
